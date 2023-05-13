@@ -1,4 +1,13 @@
 package model;
+/*
+KELOMPOK 3
+Nama : Gabriel Allba Shemi Yuma
+NPM : 210711150
+
+Nama : Andreas Margono
+NPM : 210711135
+*/
+import exception.InputKosongException;
 
 public class PeminjamanRuangan {
     private int id;
@@ -15,7 +24,21 @@ public class PeminjamanRuangan {
         this.fasilitas = fasilitas;
         
     }
-    public PeminjamanRuangan(int id, String tanggal, String lama_peminjaman, String fasilitas, Karyawan karyawan, Ruangan ruangan) {
+    public PeminjamanRuangan(int id, String tanggal, String lama_peminjaman, String fasilitas, Karyawan karyawan, Ruangan ruangan) throws InputKosongException{
+      
+        if(tanggal.length()==0){
+            throw new InputKosongException();
+        }
+        if(lama_peminjaman.length()==0){
+            throw new InputKosongException();
+        }
+        if(fasilitas.length()==0){
+            throw new InputKosongException();
+        }    
+        
+        
+        
+        
         this.id = id;
         this.tanggal = tanggal;
         this.lama_peminjaman = lama_peminjaman;

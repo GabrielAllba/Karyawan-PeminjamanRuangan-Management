@@ -1,5 +1,12 @@
 package table;
+/*
+KELOMPOK 3
+Nama : Gabriel Allba Shemi Yuma
+NPM : 210711150
 
+Nama : Andreas Margono
+NPM : 210711135
+*/
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import model.PeminjamanRuangan;
@@ -15,7 +22,7 @@ public class TablePeminjamanRuangan extends AbstractTableModel{
         return list.size();
     }
     public int getColumnCount(){
-        return 5;
+        return 8;
     }
     
     public Object getValueAt(int rowIndex, int columnIndex){
@@ -36,6 +43,8 @@ public class TablePeminjamanRuangan extends AbstractTableModel{
                 return list.get(rowIndex).getKaryawan().getBebanMengajar();
             case 7:
                 return list.get(rowIndex).getKaryawan().getJamKerja();
+            case 8:
+                return list.get(rowIndex).getId();
             default:
                 return null;
         }

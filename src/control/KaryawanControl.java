@@ -1,5 +1,6 @@
 package control;
 /*
+KELOMPOK 3
 
 Nama : Gabriel Allba Shemi Yuma
 NPM : 210711150
@@ -23,6 +24,15 @@ public class KaryawanControl {
     }
     public int countKaryawanByJenis(String jenis){
         return dDao.countKaryawanByJenis(jenis);
+    }
+    public List<Karyawan> showListKaryawan(){
+        List<Karyawan> dataKaryawan = dDao.showKaryawan("Dosen");
+        List<Karyawan> dataKaryawan2 = dDao.showKaryawan("Staff Tu");
+        
+        for(Karyawan k: dataKaryawan2){
+            dataKaryawan.add(k);
+        }
+        return dataKaryawan;
     }
     public String showDataKaryawan(String jenis){
         List<Karyawan> dataKaryawan = dDao.showKaryawan(jenis);

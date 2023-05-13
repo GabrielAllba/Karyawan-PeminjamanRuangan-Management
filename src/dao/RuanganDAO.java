@@ -1,4 +1,12 @@
 package dao;
+/*
+        KELOMPOK 3
+    Nama : Gabriel Allba Shemi Yuma
+    NPM : 210711150
+
+    Nama : Andreas Margono
+    NPM : 210711135
+*/
 
 import connection.DbConnection;
 import java.sql.Connection;
@@ -12,7 +20,7 @@ public class RuanganDAO {
     private DbConnection dbCon = new DbConnection();
     private Connection con;
     
-    /* public void insertRuangan(Ruangan d){
+     public void insertRuangan(Ruangan d){
         con = dbCon.makeConnection();
         String sql = "INSERT INTO ruangan(nama, kapasitas, luas) "+ "VALUES ('" + d.getNama()+"', '"+d.getKapasitas()+"', '"+d.getLuas()+"' )";
         System.out.println("Adding Ruangan...");
@@ -27,11 +35,18 @@ public class RuanganDAO {
             System.out.println(e);
         }
         dbCon.closeConnection();
-    }*/
+    }
     
-    public List<Ruangan> showRuangan(){
+    public List<Ruangan> showRuanganBySearch(String query){
         con = dbCon.makeConnection();
-        String sql = "SELECT * FROM ruangan";
+        String sql = "";
+        
+        if(query.length()==0){
+            sql = "SELECT * FROM ruangan";
+        }else{
+            sql = "SELECT * FROM ruangan WHERE id LIKE '"+query+"' "+" OR nama LIKE '"+query+"'"+" OR kapasitas LIKE '"+query+"'"+" OR luas like '"+query+"';";    
+        }
+        
         System.out.println("Mengambil data Ruangan...");
         
         List<Ruangan> list = new ArrayList<>();
@@ -65,43 +80,12 @@ public class RuanganDAO {
     }
     
     
-    /* public Ruangan searchRuangan(String query){
-        con = dbCon.makeConnection();
-        
-        String sql = "SELECT * FROM ruangan WHERE id LIKE '"+query+"' "+" OR nama LIKE '"+query+"'"+" OR kapasitas LIKE '"+query+"'"+" OR luas like '"+query+"';";
-        System.out.println("Searching Ruangan...");
-        Ruangan d = null;
-        
-        try{
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
-            
-            if(rs !=null){
-                while(rs.next()){
-                    d = new Ruangan(
-                            rs.getInt("id"),
-                            rs.getString("nama"),
-                            rs.getString("kapasitas"),
-                            rs.getString("luas")
-                    );
-                }
-            }
-            rs.close();
-            statement.close();
-        }catch(Exception e){
-            System.out.println("Error reading database...");
-            System.out.println(e);
-        }
-        
-        dbCon.closeConnection();
-        
-        return d;
-    } */
+   
     
-    /* public void updateRuangan(Ruangan d){
+     public void updateRuangan(Ruangan d, int id){
         con = dbCon.makeConnection();
         
-        String sql = "UPDATE ruangan SET id = '"+d.getId()+"', "+ "nama = '"+d.getNama()+"', " + "kapasitas = '"+d.getKapasitas()+"' "+"WHERE id = '"+d.getId()+"'";
+        String sql = "UPDATE ruangan SET nama = '"+d.getNama()+"', " + "kapasitas = '"+d.getKapasitas()+"' "+"WHERE id = '"+id+"'";
         System.out.println(sql);
         System.out.println("Editing Ruangan...");
         
@@ -116,24 +100,25 @@ public class RuanganDAO {
         }
         
         dbCon.closeConnection();
-    } */
+    } 
     
-/*    public void deleteRuangan(Ruangan d){
+    public void deleteRuangan(int id){
         con = dbCon.makeConnection();
-        String sql = "DELETE FROM ruangan WHERE id = '" + d.getId()+ "'";
+        System.out.println("INT ID : "+id);
+        String sql = "DELETE FROM ruangan WHERE id = '" + id+ "'";
         
         System.out.println("Deleting Ruangan...");
         
         try{
             Statement statement = con.createStatement();
             int result = statement.executeUpdate(sql);
-            System.out.println("Delete "+result+ " Ruangan "+ d.getId());
+            System.out.println("Delete "+result+ " Ruangan "+ id);
             statement.close();
         }catch(Exception e){
             System.out.println("Error deleting ruangan...");
             System.out.println(e);
         }
         dbCon.closeConnection();
-    } */
+    } 
     
 }

@@ -1,6 +1,8 @@
 package model;
 /*
 
+KELOMPOK 3
+
 Nama : Gabriel Allba Shemi Yuma
 NPM : 210711150
 
@@ -105,7 +107,10 @@ public class Karyawan {
         this.jamKerja = jamKerja;
     }
     
-    
+    @Override
+    public String toString(){
+        return nama;
+    }
     public String showData(){
         return  
                 "\n\nID             : " + this.id + "\n"+ 

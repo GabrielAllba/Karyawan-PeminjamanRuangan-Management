@@ -1,6 +1,6 @@
 package control;
 /*
-
+KELOMPOK 3
 Nama : Gabriel Allba Shemi Yuma
 NPM : 210711150
 
@@ -11,6 +11,7 @@ NPM : 210711135
 import dao.PeminjamanRuanganDAO;
 import java.util.List;
 import model.PeminjamanRuangan;
+import table.TablePeminjamanRuangan;
 
 public class PeminjamanRuanganControl {
     private PeminjamanRuanganDAO dDao = new PeminjamanRuanganDAO();
@@ -18,16 +19,20 @@ public class PeminjamanRuanganControl {
     public void insertPeminjaman(PeminjamanRuangan pr){
         dDao.insertPeminjaman(pr);
     }
-    public List<PeminjamanRuangan> showPeminjaman(String query){
-        List<PeminjamanRuangan> dataPeminjamanRuangan = dDao.showPeminjaman(query);
-        return dataPeminjamanRuangan;
-    }
-    public void updatePeminjaman(PeminjamanRuangan pr){
-        dDao.updatePeminjaman(pr);
+    public TablePeminjamanRuangan showPeminjaman(String query){
+        List<PeminjamanRuangan> dataPeminjaman = dDao.showPeminjaman(query);
+        TablePeminjamanRuangan tablePeminjaman = new TablePeminjamanRuangan(dataPeminjaman);
+        
+        return tablePeminjaman;
     }
     
-    public void deleteDataPeminjaman(PeminjamanRuangan pr){
-        dDao.deletePeminjaman(pr);
+    
+    public void updatePeminjaman(PeminjamanRuangan pr, int id){
+        dDao.updatePeminjaman(pr, id);
+    }
+    
+    public void deleteDataPeminjaman(int id){
+        dDao.deletePeminjaman(id);
     }
 }
     
